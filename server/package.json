@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "busboy": "^0.2.12",
+    "cors": "^2.7.1",
+    "express": "~4.13.1",
+    "multer": "^1.1.0",
+    "nodemon": "^1.9.1"
+  }
+}

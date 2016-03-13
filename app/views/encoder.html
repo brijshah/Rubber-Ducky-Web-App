@@ -1,0 +1,45 @@
+<div class="row">
+  <form role="form" action="/upload" enctype="multipart/form-data" name="encoder" method="post">
+  <div class="col-sm-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Duck Script</h3>
+      </div>
+      <div class="panel-body">
+        <textarea class="lined" rows="30" name="duck_text" ng-model="textContent" placeholder="Enter Ducky Script Here" style="width:100%"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Create Payload</h3>
+      </div>
+      <div class="panel-body">
+        <p>Once you have completed your script, click the button below.</p>
+        <button type="button" class="btn btn-primary" ng-hide="downloadReady" ng-click="makeFile()" ng-disabled="!textContent">Generate Payload</button>
+        <a ng-href="{{downloadBinFile}}" target="_blank" class="btn btn-default" ng-show="downloadReady" download="inject.bin">Download .bin</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#encoderModal').modal('show');
+    });
+</script>
+
+<div id="encoderModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Tip</h4>
+            </div>
+            <div class="modal-body">
+              <p>Ensure Ducky Script is implemented properly to ensure correct encoding. For assistance on how to correctly write Ducky Script go here or here.</p>
+            </div>
+        </div>
+    </div>
+</div>

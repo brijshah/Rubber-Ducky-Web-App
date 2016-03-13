@@ -1,0 +1,91 @@
+<div class="row">
+
+	<!-- Operating System Panel -->
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Operating System</h3>
+			</div>
+			<div class="panel-body">
+				<p>Choosing the appropriate operating system and the correspoding scripts will be displayed.</p>
+				<form>
+					<div ng-repeat="osObject in os">
+						<input type="radio" ng-model="payloadParams.os" ng-value="osObject.name">{{osObject.name}}</input>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-md-6">
+		<!-- Reconnaissance Panel -->
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Reconnaissance</h3>
+  			</div>
+  			<div class="panel-body">
+  				<form>
+	    			<div ng-repeat="recObject in recOptions">
+						<input type="radio" ng-model="payloadParams.rec" ng-value="recObject.name">{{recObject.name}}</input>
+					</div>
+				</form>
+  			</div>
+		</div>
+
+		<!-- Exploitation Panel -->
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Exploitation</h3>
+  			</div>
+  			<div class="panel-body">
+  				<form>
+	    			<div ng-repeat="expObject in expOptions">
+						<input type="radio" ng-model="payloadParams.exp" ng-value="expObject.name">{{expObject.name}}</input>
+					</div>
+				</form>
+  			</div>
+		</div>
+
+		<!-- Reporting Panel -->
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Reporting</h3>
+  			</div>
+  			<div class="panel-body">
+  				<form>
+	    			<div ng-repeat="reportObject in reportOptions">
+						<input type="radio" ng-model="payloadParams.report" ng-value="reportObject.name">{{reportObject.name}}</input>
+					</div>
+				</form>
+  			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<!-- Create Payload Panel -->
+		<div class="panel panel-default">
+	  		<div class="panel-heading">
+	    		<h3 class="panel-title">Create Payload</h3>
+	  		</div>
+	  		<div class="panel-body">
+	    		<p>When you have selected all required scripts press 'Generate Payload'</p>
+				<button type="button" class="btn btn-default" ng-click="postPayload()">Generate Payload</button> <br/>
+                <hr ng-show="downloadReady">
+				<a ng-href="{{downloadTextFile}}" target="_blank" class="btn btn-default" ng-show="downloadReady" download="inject.txt">Download Archive</a> <br/>
+				<p>{{errors}}</p>
+	  		</div>
+		</div>
+
+		<!-- Advertisment Panel -->
+		<div class="panel panel-default">
+	  		<div class="panel-heading">
+	    		<h3 class="panel-title">Advertisement</h3>
+	  		</div>
+	  		<div class="panel-body">
+	    		<p>TODO</p>
+	  		</div>
+		</div>
+	</div>
+
+</div>
