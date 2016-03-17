@@ -108,7 +108,6 @@ angular.module('rubberDuckyWeb2App')
 		{name:'Enable RDP', value:false},
 		{name:'Reverse Shell', value:false},
 		{name:'DNS Poison', value:false},
-		{name:'Find & FTP', value:false},
 		{name:'Remove Windows Update', value:false}
     ];
 

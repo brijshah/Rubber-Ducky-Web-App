@@ -4,11 +4,14 @@ var exec = require('child_process').exec;
 var router = express.Router();
 
 
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
+
 //endpoint for payload
 router.post('/processPayload', function(req, res) {
 	console.log(req.query);
 	if(req.query.os == 'Windows' && req.query.rec == 'Computer Information' && req.query.report == 'FTP Report') {
-		res.send('http://localhost:3033/payload/windows/compinfo/ftp/inject.zip')
+		res.send('http://localhost:3033/payload/windows/recon/compinfo/ftp/inject.zip')
 	}
 });
 
@@ -19,15 +22,22 @@ router.post('/makeFile', function(req,res){
 		if (err) {
 			console.log(err);
 		}
-		exec('java -jar duckencode.jar -i ./public/encode/inject.txt -o ./public/encode/inject.bin');
+		exec('java -jar encoder.jar -i ./public/encode/inject.txt -o ./public/encode/inject.bin');
 		res.send({link: "http://localhost:3033/encode/inject.bin"});
+		//exec('rm -rf inject.*')
 	});
 });
 
-//endpoint for decoder, broken
-router.post('/fileupload', function(req, res) {
+//endpoint for decoder
+router.post('/fileupload', upload.single('file'), function(req, res) {
 	console.log(req.file, req.body, req.files);
-	res.status(200).send('uploaded');
+	var newPath = `${req.file.destination}${req.file.originalname}`
+	fs.rename(req.file.path, newPath, function(err, file) {
+		console.log(file, err);
+		const convertedFilePath = `/uploads/inject.txt`
+		exec(`python DuckDecoder.py decode ${newPath} > ${convertedFilePath}`);
+		res.status(200).json({filePath: `http://localhost:3033/${convertedFilePath}`});
+	})
 });
 
 //object that is retured as a result of require call
