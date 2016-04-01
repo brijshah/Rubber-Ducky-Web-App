@@ -29,7 +29,13 @@
     "time-grunt": "^1.0.0",
     "jshint-stylish": "^1.0.0"
   },
+  "script": {
+    "test": "karma start test/karma.conf.js"
+  },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "karma": "^0.13.22"
   }
 }

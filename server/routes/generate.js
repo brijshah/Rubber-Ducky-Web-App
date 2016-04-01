@@ -2,16 +2,72 @@ var fs = require('fs');
 var express = require('express');
 var exec = require('child_process').exec;
 var router = express.Router();
-
-
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
 //endpoint for payload
 router.post('/processPayload', function(req, res) {
 	console.log(req.query);
-	if(req.query.os == 'Windows' && req.query.rec == 'Computer Information' && req.query.report == 'FTP Report') {
-		res.send('http://localhost:3033/payload/windows/recon/compinfo/ftp/inject.zip')
+	// if(req.query.os == 'Windows' && req.query.rec == 'Computer Information' && req.query.report == 'Local Report') {
+	// 	res.send('http://localhost:3033/payload/windows/recon/compinfo/local/inject.zip');
+	// }
+	var url_parts = {
+		'os' : {
+			'Windows' : 'windows',
+			'Linux' : 'linux',
+			'OSX' : 'osx'
+		},
+		'rec' : {
+			'Computer Information' : 'compinfo',
+			'User Information' : 'userinfo',
+			'USB Information': 'usbinfo',
+			'Drive Information' : 'driveinfo',
+			'Program Information' : 'programinfo',
+			'Installed Updates' : 'installedupdates',
+			'User Documents' : 'userdocs',
+			'Basic Network Information' : 'netinfo',
+			'Network Scan' : 'netscan',
+			'Port Scan' : 'portscan',
+			'Wireless Profile' : 'wirelessprofile',
+			'Screen Capture' : 'screencap',
+			'Extract SAM' : 'extractsam',
+			'Chrome Profile' : 'chromeprofile',
+			'Firefox Profile' : 'firefoxprofile'
+		},
+		'exp' : {
+			'Disable Firewall' : 'disablefirewall',
+			'Find & FTP' : 'findftp',
+			'Add User' : 'adduser',
+			'Open Port' : 'openport',
+			'Access Point' : 'accesspoint',
+			'Share C Drive' : 'cdrive',
+			'Enable RDP' : 'rdp',
+			'Reverse Shell' : 'reverseshell',
+			'DNS Poison' : 'dns',
+			'Remove Windows Update' : 'removewinupdate'
+		},
+		'report' : {
+			'Local Report' : 'local'
+		}
+	};
+	if (req.query.rec) {
+		res.send (
+			'http://localhost:3033/payload/'
+			+ url_parts.os[req.query.os]
+			+ '/recon'
+			+ '/' + url_parts.rec[req.query.rec]
+			+ '/' + url_parts.report[req.query.report]
+			+ '/inject.zip'
+			);
+	} else {
+		res.send (
+			'http://localhost:3033/payload/'
+			+ url_parts.os[req.query.os]
+			+ '/exploit'
+			+ '/' + url_parts.exp[req.query.exp]
+			+ '/' + url_parts.report[req.query.report]
+			+ '/inject.zip'
+			);
 	}
 });
 

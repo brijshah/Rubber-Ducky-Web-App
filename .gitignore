@@ -1,4 +1,6 @@
 .DS_Store
+*.bin
+*.txt
 node_modules/
 bower_components/
 *.log
