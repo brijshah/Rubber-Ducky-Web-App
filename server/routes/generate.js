@@ -8,9 +8,6 @@ var upload = multer({ dest: 'uploads/' });
 //endpoint for payload
 router.post('/processPayload', function(req, res) {
 	console.log(req.query);
-	// if(req.query.os == 'Windows' && req.query.rec == 'Computer Information' && req.query.report == 'Local Report') {
-	// 	res.send('http://localhost:3033/payload/windows/recon/compinfo/local/inject.zip');
-	// }
 	var url_parts = {
 		'os' : {
 			'Windows' : 'windows',
@@ -65,7 +62,6 @@ router.post('/processPayload', function(req, res) {
 			+ url_parts.os[req.query.os]
 			+ '/exploit'
 			+ '/' + url_parts.exp[req.query.exp]
-			+ '/' + url_parts.report[req.query.report]
 			+ '/inject.zip'
 			);
 	}

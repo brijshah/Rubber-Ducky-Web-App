@@ -40,6 +40,17 @@ angular.module('rubberDuckyWeb2App')
     $scope.$watch('payloadParams.rec', function(recSelection){
     	if(recSelection){
     		$scope.payloadParams.exp = null;
+
+            if ($scope.payloadParams.os === 'Windows') {
+               $scope.reportOptions = winRep;
+            }
+
+            if ($scope.payloadParams.os === 'OSX') {
+               $scope.reportOptions = osxRep;
+            }
+            if ($scope.payloadParams.os === 'Linux') {
+               $scope.reportOptions = linuxRep;
+            }
     	}
     });
 
@@ -47,6 +58,7 @@ angular.module('rubberDuckyWeb2App')
     $scope.$watch('payloadParams.exp', function(expSelection){
     	if(expSelection){
     		$scope.payloadParams.rec = null;
+            $scope.reportOptions = null;
     	}
     });
 
@@ -80,8 +92,8 @@ angular.module('rubberDuckyWeb2App')
 		{name: 'Program Information', value:false},
 		{name: 'Port Scan', value:false},
 		{name: 'Screen Capture', value:false},
-		{name: 'Chrome Profile', value:false},
-		{name: 'Firefox Profile', value:false},
+		{name: 'Wireless Profile', value:false},
+		{name: 'Installed Updates', value:false},
     ];
 
     //list of Linux Reconnaissance scripts
@@ -98,6 +110,7 @@ angular.module('rubberDuckyWeb2App')
 		{name:'Linux'}
   	];
 
+    //Windows Exploit Options
 	var winExp = [
 		{name:'Disable Firewall', value:false},
 		{name:'Find & FTP', value:false},
@@ -111,20 +124,24 @@ angular.module('rubberDuckyWeb2App')
 		{name:'Remove Windows Update', value:false}
     ];
 
+    //OSX Exploit Options
     var osxExp = [
 		{name:'Disable Firewall', value:false},
-		{name:'Find & FTP', value:false},
+		{name:'iMessage Capture', value:false},
 		{name:'Add User', value:false},
 		{name:'Open Port', value:false},
-		{name:'Reverse Shell', value:false},
-		{name:'DNS Poison', value:false}
+		{name:'User Backdoor', value:false},
+        {name:'Local DNS Poison', value:false},
+		{name:'Wget & Execute', value:false}
     ];
 
+    //Linux Exploit Options
     var linuxExp = [
 		{name:'Find & FTP', value:false},
 		{name:'Reverse Shell', value:false},
     ];
 
+    //Windows Report Options
 	var winRep = [
 		{name:'FTP Report', value:false},
 		{name:'Local Report', value:false},
@@ -132,25 +149,32 @@ angular.module('rubberDuckyWeb2App')
 		{name:'Save To USB', value:false}
 	];
 
+    //OSX Report Options
 	var osxRep = [
 		{name:'FTP Report', value:false},
 		{name:'Local Report', value:false},
-		{name:'Email Report', value:false},
 		{name:'Save To OSX USB', value:false}
 	];
 
+    //Linux Report Options
 	var linuxRep = [
 		{name:'FTP Report', value:false},
 		{name:'Local Report', value:false},
-		{name:'Email Report', value:false},
 		{name:'Save To Linux USB', value:false}
 	];
 
-	//send parameters collected to backend for processing
+    //$scope.payloadParams.os !== null && $scope.payloadParams.report !== null && ($scope.payloadParams.rec !== null || $scope.payloadParams.exp !== null
+
+    //send parameters collected to backend for processing
 	$scope.postPayload = function() {
-		if($scope.payloadParams.os !== null && $scope.payloadParams.report !== null && ($scope.payloadParams.rec !== null || $scope.payloadParams.exp !== null)) {
+        var isOperatingSystemSelected = $scope.payloadParams.os !== null;
+        var isRecSelected = $scope.payloadParams.rec !== null;
+        var isExpSelected = $scope.payloadParams.exp !== null;
+        var isReportSelected = $scope.payloadParams.report !== null;
+
+		if(isOperatingSystemSelected && ((isRecSelected && isReportSelected) || isExpSelected)) {
 			$scope.downloadReady = true;
-            $scope.errors = " ";
+            $scope.errors = null;
 		} else {
 			$scope.errors = 'Please select appropriate scripts.';
 		}
@@ -159,5 +183,4 @@ angular.module('rubberDuckyWeb2App')
 				$scope.downloadTextFile = data;
 			});
 	};
-
 });

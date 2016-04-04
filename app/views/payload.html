@@ -1,5 +1,14 @@
 <div class="row">
 
+    <div class="col-md-12">
+        <div ng-if="errors" class="alert alert-danger alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Error!</strong> {{errors}}
+        </div>
+    </div>
+
 	<!-- Operating System Panel -->
 	<div class="col-md-12">
 		<div class="panel panel-default">
@@ -73,7 +82,7 @@
 				<button type="button" class="btn btn-default" ng-click="postPayload()">Generate Payload</button> <br/>
                 <hr ng-show="downloadReady">
 				<a ng-href="{{downloadTextFile}}" target="_blank" class="btn btn-default" ng-show="downloadReady" download="inject.txt">Download Archive</a> <br/>
-				<p>{{errors}}</p>
+
 	  		</div>
 		</div>
 
