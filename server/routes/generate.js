@@ -3,11 +3,12 @@ var express = require('express');
 var exec = require('child_process').exec;
 var router = express.Router();
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+// var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: 'public/uploads/' });
 
 //endpoint for payload
 router.post('/processPayload', function(req, res) {
-	console.log(req.query);
+	//console.log(req.query);
 	var url_parts = {
 		'os' : {
 			'Windows' : 'windows',
@@ -69,7 +70,7 @@ router.post('/processPayload', function(req, res) {
 
 //endpoint for encoder
 router.post('/makeFile', function(req,res){
-	console.log(req.body.content);
+	//console.log(req.body.content);
 	fs.writeFile('./public/encode/inject.txt', req.body.content, function(err){
 		if (err) {
 			console.log(err);
@@ -82,14 +83,15 @@ router.post('/makeFile', function(req,res){
 
 //endpoint for decoder
 router.post('/fileupload', upload.single('file'), function(req, res) {
-	console.log(req.file, req.body, req.files);
+	//console.log(req.file, req.body, req.files);
 	var newPath = `${req.file.destination}${req.file.originalname}`
 	fs.rename(req.file.path, newPath, function(err, file) {
-		console.log(file, err);
-		const convertedFilePath = `/uploads/inject.txt`
+		//console.log(file, err);
+		const convertedFilePath = `public/uploads/inject.txt`
+		//console.log(convertedFilePath);
 		exec(`python DuckDecoder.py decode ${newPath} > ${convertedFilePath}`);
-		res.status(200).json({filePath: `http://localhost:3033/${convertedFilePath}`});
-	})
+		res.status(200).json({filePath: `http://localhost:3033/uploads/inject.txt`});
+	});
 });
 
 //object that is retured as a result of require call

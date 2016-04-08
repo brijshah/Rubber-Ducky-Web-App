@@ -11,13 +11,17 @@ describe('Controller: AboutCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
+    // route = $route;
     AboutCtrl = $controller('AboutCtrl as aboutCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.aboutCtrl.awesomeThings.length).toBe(3);
-  });
+  // it('should have about route with right template and controller', function () {
+  //   var aboutRoute = route.routes['/about'];
+  //   expect(aboutRoute).toBeDefine();
+  //   expect(aboutRoute.controller).toEqual('AboutCtrl');
+  //   expect(aboutRoute.templateUrl).toEqual('views/about.html');
+  // });
 });

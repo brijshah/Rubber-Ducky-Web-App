@@ -6,10 +6,12 @@ describe('Controller: PayloadCtrl', function () {
   beforeEach(module('rubberDuckyWeb2App'));
 
   var PayloadCtrl,
-    scope;
+    scope,
+    httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
+    httpBackend = $httpBackend;
     scope = $rootScope.$new();
     PayloadCtrl = $controller('PayloadCtrl', {
       $scope: scope
@@ -17,7 +19,14 @@ describe('Controller: PayloadCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(PayloadCtrl.awesomeThings.length).toBe(3);
+  it('should have valid parameters selected for download', function() {
+    if(scope.isOperatingSystemSelected && ((scope.isRecSelected && scope.isReportSelected) || scope.isExpSelected)) {
+      expect(scope.downloadReady).toBeTruthy();
+      expect(scope.errors).toBe(" ");
+    }
+  });
+
+  it('should have valid controller', function() {
+    expect(PayloadCtrl).toBeDefined();
   });
 });

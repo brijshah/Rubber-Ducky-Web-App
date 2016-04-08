@@ -12,18 +12,18 @@ angular.module('rubberDuckyWeb2App')
 
     $scope.downloadReady = false;
 
-    // $scope.$watch('files', function () {
-    //     $scope.upload($scope.files);
-    // });
-
   	$scope.upload = function (file) {
         console.log(file)
+
+        var fileName = file.name;
 
         Upload.upload({
             url: 'http://localhost:3033/fileupload',
             data: {file: file[0]},
         }).then(function (resp) {
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            console.log('Success ' + fileName + ' uploaded. Response: ' + resp.data);
+            //The below will output the filename in inspect console
+            console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
             console.log(resp.data);
             $scope.downloadTextFile = resp.data.filePath;
             console.log($scope.downloadTextFile)

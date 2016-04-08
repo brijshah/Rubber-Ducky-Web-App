@@ -176,7 +176,7 @@ angular.module('rubberDuckyWeb2App')
 			$scope.downloadReady = true;
             $scope.errors = null;
 		} else {
-			$scope.errors = 'Please select appropriate scripts.';
+			$scope.errors = 'Please select a reporting script along with a Reconnaissance script.';
 		}
 		$http.post('http://localhost:3033/processPayload?' + $httpParamSerializerJQLike($scope.payloadParams)).
 			success(function(data){

@@ -14,8 +14,15 @@ angular.module('rubberDuckyWeb2App')
   		$scope.downloadTextFile = "";
 
   		$scope.makeFile = function(){
+        // var request = {
+        //   url: 'http://localhost:3033/makeFile',
+        //   method: 'POST',
+        //   headers: {'Content-Type': 'application/json'},
+        //   data: {content: $scope.textContent}
+        // };
+        // $http(request);
+
   			$http.post('http://localhost:3033/makeFile', {content: $scope.textContent}).then(function(response){
-  				console.log(response);
   				$scope.downloadReady = true;
   				$scope.downloadBinFile = response.data.link;
 
