@@ -10,6 +10,8 @@
 angular.module('rubberDuckyWeb2App')
   .controller('PayloadCtrl', function ($scope, $http, $httpParamSerializerJQLike) {
 
+    $scope.messages = "";
+
   	//parameters to send in json form to backend
     $scope.payloadParams = {
     	os: null,
@@ -66,7 +68,7 @@ angular.module('rubberDuckyWeb2App')
 
     //list of Windows Reconnaissance scripts
     var winRec = [
-		{name: 'Computer Information', value:false},
+		{name: 'Computer Information', value:false, tooltip: 'Get computer information from host'},
 		{name: 'User Information', value:false},
 		{name: 'USB Information', value:false},
 		{name: 'Drive Information', value:false},
@@ -85,22 +87,34 @@ angular.module('rubberDuckyWeb2App')
 
     //list of OSX Reconnaissance scripts
     var osxRec = [
-		{name:'Computer Information', value:false},
-		{name: 'User Information', value:false},
-		{name: 'USB Information', value:false},
-		{name: 'Drive Information', value:false},
-		{name: 'Program Information', value:false},
-		{name: 'Port Scan', value:false},
-		{name: 'Screen Capture', value:false},
-		{name: 'Wireless Profile', value:false},
-		{name: 'Installed Updates', value:false},
+		{name: 'Computer Information', value:false},
+        {name: 'User Information', value:false},
+        {name: 'USB Information', value:false},
+        {name: 'Drive Information', value:false},
+        {name: 'Program Information', value:false},
+        {name: 'Installed Updates', value:false},
+        {name: 'User Documents', value:false},
+        {name: 'Basic Network Information', value:false},
+        {name: 'Network Scan', value:false},
+        {name: 'Port Scan', value:false},
+        {name: 'Wireless Profile', value:false},
+        {name: 'Screen Capture', value:false}
     ];
 
     //list of Linux Reconnaissance scripts
     var linuxRec = [
-		{name:'Computer Information', value:false},
-		{name: 'User Information', value:false},
-		{name: 'USB Information', value:false},
+		{name: 'Computer Information', value:false},
+        {name: 'User Information', value:false},
+        {name: 'USB Information', value:false},
+        {name: 'Drive Information', value:false},
+        {name: 'Program Information', value:false},
+        {name: 'Installed Updates', value:false},
+        {name: 'User Documents', value:false},
+        {name: 'Basic Network Information', value:false},
+        {name: 'Network Scan', value:false},
+        {name: 'Port Scan', value:false},
+        {name: 'Wireless Profile', value:false},
+        {name: 'Screen Capture', value:false}
     ];
 
     //not sure if needed still?
@@ -121,7 +135,9 @@ angular.module('rubberDuckyWeb2App')
 		{name:'Enable RDP', value:false},
 		{name:'Reverse Shell', value:false},
 		{name:'DNS Poison', value:false},
-		{name:'Remove Windows Update', value:false}
+		{name:'Remove Windows Update', value:false},
+        {name:'Netcat Backdoor', value:false},
+        {name:'Install Keylogger', value:false}
     ];
 
     //OSX Exploit Options
@@ -130,20 +146,27 @@ angular.module('rubberDuckyWeb2App')
 		{name:'iMessage Capture', value:false},
 		{name:'Add User', value:false},
 		{name:'Open Port', value:false},
-		{name:'User Backdoor', value:false},
         {name:'Local DNS Poison', value:false},
-		{name:'Wget & Execute', value:false}
+		{name:'Wget & Execute', value:false},
+        {name:'Netcat Backdoor', value:false},
+        {name:'Install Keylogger', value:false}
     ];
 
     //Linux Exploit Options
     var linuxExp = [
-		{name:'Find & FTP', value:false},
-		{name:'Reverse Shell', value:false},
+		{name:'Disable Firewall', value:false},
+		{name:'Open Port', value:false},
+        {name:'Add User', value:false},
+        {name:'Access Point', value:false},
+        {name:'Local DNS Poison', value:false},
+        {name:'Wget & Execute', value:false},
+        {name:'Netcat Backdoor', value:false},
+        {name:'Install Keylogger', value:false}
     ];
 
     //Windows Report Options
 	var winRep = [
-		{name:'FTP Report', value:false},
+		// {name:'FTP Report', value:false},
 		{name:'Local Report', value:false},
 		{name:'Email Report', value:false},
 		{name:'Save To USB', value:false}
@@ -151,15 +174,16 @@ angular.module('rubberDuckyWeb2App')
 
     //OSX Report Options
 	var osxRep = [
-		{name:'FTP Report', value:false},
 		{name:'Local Report', value:false},
+        {name:'Email Report', value:false},
+        {name:'SSH Report', value:false},
 		{name:'Save To OSX USB', value:false}
 	];
 
     //Linux Report Options
 	var linuxRep = [
-		{name:'FTP Report', value:false},
 		{name:'Local Report', value:false},
+        {name:'SSH Report', value:false},
 		{name:'Save To Linux USB', value:false}
 	];
 
@@ -181,6 +205,7 @@ angular.module('rubberDuckyWeb2App')
 		$http.post('http://localhost:3033/processPayload?' + $httpParamSerializerJQLike($scope.payloadParams)).
 			success(function(data){
 				$scope.downloadTextFile = data;
+                console.log(data);
 			});
 	};
 });

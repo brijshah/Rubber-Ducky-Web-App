@@ -9,7 +9,22 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        In order for the scripts from the payload generator to run, the 'victim' machine must have administrator/sudo privilages.
+
+        <h5>Selecting Scripts</h5>
+        At this time, it is recommended that you only select either a reconnaisance script or an exploit script. The reconnaisance scripts require a reporting script to be selected along with it whereas the exploit ones do not. Selecting either script is enforced in order to keep the ducky from being exposed. The longer they take to run, the higher the chance of exposing it to the user.
+
+        Failing to adhere to these rules will result in an error message to be displayed on the web page with the appropriate message.
+
+        <h5>Downloading Script</h5>
+        Once you have selected the required scripts, the download button will appear allowing you to retrieve both the text file containing the generated script as well as the bin file ready to be deployed.
+
+        <h5>Running Script</h5>
+        <ul>
+          <li>Copy bin file to SD Card</li>
+          <li>Insert SD Card into USB Rubber Ducky</li>
+          <li>Insert USB Rubber Ducky into 'victim' machine</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -23,7 +38,24 @@
     </div>
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        If this is your first time creating your own script and you are unsure of how they are implemented. Refer to the guide here:
+        <a href="https://github.com/hak5darren/USB-Rubber-Ducky/wiki/My-first-payload">My First Payload</a><br>
+        <br>
+        <h5>DuckyScript</h5>
+        The Ducky Script is the language of the USB Rubber Ducky. Writing Scripts can be done using the Encoder web page.
+
+        <h5>Syntax</h5>
+        <p>Ducky Syntax is simple. Each command resides on a new line and may have options follow them. The commands are all written in CAPS. Most of the commands will invoke keystrokes or a combination of keys, while some offer delays or pauses. Below are the key commands you can use to create your scripts.</p>
+
+        <p><code>REM:</code> Lines that begin with REM will not be processed. REM is a comment.<p>
+
+        <p><code>DEFAULT_DELAY:</code> is used to define how long in milliseconds to wait before next command is executed.<p>
+
+        <p><code>DELAY:</code> creates a momentary pause in the script. Used for creating a momentary pause between sequential commands that may take the 'victim' machine some time to process.<p>
+
+        <p><code>STRING:</code> processes the text following taking special care to auto-shift.<p>
+
+        <p><code>WINDOWS or GUI:</code> used to emulate the Windows key or CMD key.<p>
       </div>
     </div>
   </div>
@@ -37,7 +69,7 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        The <a href="https://forums.hak5.org/index.php?/forum/56-usb-rubber-ducky/">HAK5 Forums</a> are a great place to ask questions, learn more and get some great ideas from the community.
       </div>
     </div>
   </div>

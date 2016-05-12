@@ -8,7 +8,7 @@ var upload = multer({ dest: 'public/uploads/' });
 
 //endpoint for payload
 router.post('/processPayload', function(req, res) {
-	//console.log(req.query);
+	console.log(req.query);
 	var url_parts = {
 		'os' : {
 			'Windows' : 'windows',
@@ -42,10 +42,19 @@ router.post('/processPayload', function(req, res) {
 			'Enable RDP' : 'rdp',
 			'Reverse Shell' : 'reverseshell',
 			'DNS Poison' : 'dns',
-			'Remove Windows Update' : 'removewinupdate'
+			'Remove Windows Update' : 'removewinupdate',
+			'Wget & Execute' : 'wgetexec',
+			'iMessage Capture' : 'imessagecap',
+			'User Backdoor' : 'userbackdoor',
+			'Local DNS Poison' : 'localdns',
+			'Netcat Backdoor' : 'backdoor',
+			'Install Keylogger' : 'keylogger'
 		},
 		'report' : {
-			'Local Report' : 'local'
+			'Local Report' : 'local',
+			'USB Report' : 'usb',
+			'Email Report' : 'email',
+			'SSH Report' : 'ssh'
 		}
 	};
 	if (req.query.rec) {
@@ -77,7 +86,6 @@ router.post('/makeFile', function(req,res){
 		}
 		exec('java -jar encoder.jar -i ./public/encode/inject.txt -o ./public/encode/inject.bin');
 		res.send({link: "http://localhost:3033/encode/inject.bin"});
-		//exec('rm -rf inject.*')
 	});
 });
 

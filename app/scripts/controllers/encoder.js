@@ -25,7 +25,6 @@ angular.module('rubberDuckyWeb2App')
   			$http.post('http://localhost:3033/makeFile', {content: $scope.textContent}).then(function(response){
   				$scope.downloadReady = true;
   				$scope.downloadBinFile = response.data.link;
-
   			});
   		};
 });

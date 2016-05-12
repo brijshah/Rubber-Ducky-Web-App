@@ -8,10 +8,11 @@
  * Controller of the rubberDuckyWeb2App
  */
 angular.module('rubberDuckyWeb2App')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, $window) {
+
+    $scope.openTab = function() {
+        $scope.url = 'http://hakshop.myshopify.com/products/usb-rubber-ducky-deluxe?variant=353378649';
+        $window.open('http://hakshop.myshopify.com/products/usb-rubber-ducky-deluxe?variant=353378649');
+    }
+
   });
